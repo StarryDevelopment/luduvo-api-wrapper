@@ -1,6 +1,6 @@
 from .utils import setup_logger
 from .utilities.classes import User
-from .utilities.exceptions import BadRequest, NotFound, UserNotFound
+from .utilities.exceptions import NotFound, UserNotFound
 from .utilities.url import URLGenerator
 from .utilities.requests import Requests
 
