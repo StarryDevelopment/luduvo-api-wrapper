@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "luduvo"
+
+version = "0.1.0"
+
+description = "Python wrapper for Luduvo API"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name="TheSkout001", email="me@theskout001.ru"}
+]
+dependencies = ["httpx>=0.24"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
