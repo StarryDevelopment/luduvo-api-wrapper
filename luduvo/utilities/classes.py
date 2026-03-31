@@ -1,11 +1,15 @@
 import datetime
 
+
 class User:
     """Represents a Luduvo user."""
+
     def __init__(self, client, data):
         self.id: int = data.get("user_id")
         self.username: str = data.get("username")
-        self.member_since: datetime.datetime = datetime.datetime.fromtimestamp(data.get("member_since"))
+        self.member_since: datetime.datetime = datetime.datetime.fromtimestamp(
+            data.get("member_since")
+        )
         self.networth = data.get("networth")
         self.display_name: str = data.get("display_name")
         self.created_at: str = data.get("created_at")
