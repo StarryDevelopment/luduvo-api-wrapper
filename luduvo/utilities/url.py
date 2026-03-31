@@ -4,6 +4,10 @@ This module contains functions and objects used internally to generate URLs.
 
 """
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 root_site = "luduvo.com"
 
 
@@ -26,7 +30,9 @@ class URLGenerator:
             subdomain: The URL subdomain.
             protocol: The URL protocol.
         """
-        return f"{protocol}://{subdomain}.{self.base_url}"
+        full_url = f"{protocol}://{subdomain}.{self.base_url}"
+        logger.debug("Generated subdomain URL: %s", full_url)
+        return full_url
 
     def get_url(
         self,
@@ -46,4 +52,7 @@ class URLGenerator:
         """
         if base_url is None:
             base_url = self.base_url
-        return f"{protocol}://{subdomain}.{base_url}/{path}"
+
+        full_url = f"{protocol}://{subdomain}.{base_url}/{path}"
+        logger.debug("Generated URL: %s", full_url)
+        return full_url

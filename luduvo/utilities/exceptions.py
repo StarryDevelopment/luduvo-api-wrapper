@@ -7,6 +7,10 @@ Contains exceptions used by luduvo_api.
 from typing import Optional, List, Dict, Type
 from httpx import Response
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # Generic exceptions
 
@@ -160,7 +164,13 @@ def get_exception_from_status_code(code: int) -> Type[HTTPException]:
     """
     Gets an exception that should be raised instead of the generic HTTPException for this status code.
     """
-    return _codes_exceptions.get(code) or HTTPException
+    exception = _codes_exceptions.get(code) or HTTPException
+    logger.debug(
+        "Mapped HTTP status code %s to exception %s",
+        code,
+        exception.__name__,
+    )
+    return exception
 
 
 # Exceptions raised for certain Client methods

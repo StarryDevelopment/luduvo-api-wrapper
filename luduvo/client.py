@@ -1,15 +1,17 @@
-from .utils import setup_logger
+import logging
 from .utilities.classes import User
 from .utilities.exceptions import NotFound, UserNotFound
 from .utilities.url import URLGenerator
 from .utilities.requests import Requests
 
 
-logger = setup_logger()
+logger = logging.getLogger("luduvo")
 
 
 class Client:
     def __init__(self, base_url="luduvo.com"):
+        logger.debug("Initializing Client(base_url=%s)", base_url)
+
         self._url_generator: URLGenerator = URLGenerator(base_url=base_url)
         self._requests: Requests = Requests()
 
@@ -33,13 +35,16 @@ class Client:
         Returns:
             A user object.
         """
+        logger.debug(f"Fetching user with ID: {user_id}")
         try:
             user_response = await self._requests.get(
                 url=self.url_generator.get_url("api", f"users/{user_id}/profile")
             )
         except NotFound as exception:
+            logger.error(f"User not found: {user_id}")
             raise UserNotFound(
                 message="Invalid user.", response=exception.response
             ) from None
         user_data = user_response.json()
+        logger.debug(f"Successfully retrieved user data for ID: {user_id}")
         return User(client=self, data=user_data)

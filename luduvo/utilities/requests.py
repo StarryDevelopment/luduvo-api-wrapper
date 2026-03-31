@@ -12,6 +12,9 @@ from json import JSONDecodeError
 from httpx import AsyncClient, Response
 
 from .exceptions import get_exception_from_status_code
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CleanAsyncClient(AsyncClient):
@@ -64,12 +67,24 @@ class Requests:
             An HTTP response.
         """
 
+        url = (
+            kwargs.get("url") if "url" in kwargs else (args[0] if args else "<unknown>")
+        )
+        logger.debug("Sending HTTP request: %s %s", method.upper(), url)
+
         response = await self.session.request(method, *args, **kwargs)
 
         method = method.lower()
 
         if response.is_error:
             # Something went wrong, parse an error
+            logger.error(
+                "HTTP request failed: %s %s %s",
+                response.status_code,
+                response.reason_phrase,
+                response.url,
+            )
+
             content_type = response.headers.get("Content-Type")
             errors = None
             if content_type and content_type.startswith("application/json"):
@@ -77,14 +92,24 @@ class Requests:
                 try:
                     data = response.json()
                 except JSONDecodeError:
-                    pass
+                    logger.debug(
+                        "Failed to decode JSON error response from %s",
+                        response.url,
+                    )
                 errors = data and data.get("errors")
+                if errors:
+                    logger.debug("Parsed error payload: %s", errors)
 
             exception = get_exception_from_status_code(response.status_code)(
                 response=response, errors=errors
             )
             raise exception
         else:
+            logger.debug(
+                "HTTP request succeeded: %s %s",
+                response.status_code,
+                response.url,
+            )
             return response
 
     async def get(self, *args, **kwargs) -> Response:
