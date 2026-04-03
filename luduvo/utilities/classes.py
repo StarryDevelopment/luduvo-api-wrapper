@@ -1,6 +1,18 @@
 import datetime
 
 
+class Friend:
+    """Represents a friend of a Luduvo user."""
+
+    def __init__(self, __client__, **data):
+        self.id: int = data["user_id"]
+        self.username: str = data["username"]
+        self.__client__ = __client__
+
+    def __repr__(self):
+        return f"<Friend id={self.id} username={self.username}>"
+
+
 class User:
     """Represents a Luduvo user."""
 
@@ -23,3 +35,34 @@ class User:
         self.item_count: int = data.get("item_count")
         self.last_active = data.get("last_active")
         self.allow_joins: bool = data.get("allow_joins")
+        self.__client__ = client
+
+    def __repr__(self):
+        return f"<User id={self.id} username={self.username}>"
+
+    async def get_friends(self, limit: int = 50) -> list[Friend]:
+        offset = 0
+        friends: list[Friend] = []
+
+        while True:
+            response = await self.__client__._requests.get(
+                url=self.__client__.url_generator.get_url(
+                    "api", f"users/{self.id}/friends"
+                ),
+                params={"limit": limit, "offset": offset},
+            )
+
+            data = response.json()
+
+            page_friends = [
+                Friend(__client__=self.__client__, **f) for f in data["friends"]
+            ]
+
+            friends.extend(page_friends)
+
+            offset += limit
+
+            if offset >= data["total"] or not page_friends:
+                break
+
+        return friends
