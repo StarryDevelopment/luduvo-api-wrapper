@@ -1,28 +1,20 @@
+<img src="./gh-assets/luduvo-api-wrapper.svg" alt="luduvo" height=256/>
 
-# luduvo-api-wrapper
+## Overview
+A modern, asynchronous Python wrapper for the Luduvo API.
 
-A Python wrapper for the Luduvo API.
+## Features
+- **Asynchronous**: Works well with asynchronous frameworks like [FastAPI](https://fastapi.tiangolo.com/) and 
+[discord.py](https://github.com/Rapptz/discord.py).  
+- **Clean Architecture**: Object-oriented structure that maps API resources to intuitive Python classes.
+- **Flexible**: Suitable for small scripts, bots, and large-scale backend services.
+- **Lightweight**: Minimal overhead and dependencies.
 
 ## Installation
-
+Install the latest stable version with:
 ```bash
-pip install luduvo
+python3 -m pip install luduvo
 ```
 
-## Usage
 
-```python
-import asyncio
-from luduvo import Client
-
-client = Client()
-async def main():
-    user await client.get_user(1)
-    print(user.username) # > Luduvo
-
-asyncio.run(main)
-```
-
-## License
-
-MIT
+more later on...
