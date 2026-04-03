@@ -1,4 +1,4 @@
-<img src="./gh-assets/luduvo-api-wrapper.svg" alt="luduvo" height=256/>
+<img src="./gh-assets/logo.svg" alt="luduvo" height=128/>
 
 ## Overview
 A modern, asynchronous Python wrapper for the Luduvo API.
