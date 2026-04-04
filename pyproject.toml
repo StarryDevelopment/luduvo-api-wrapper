@@ -23,5 +23,6 @@ classifiers = [
 ]
 
 [project.urls]
+Homepage = "https://starrydevelopment.github.io/luduvo-api-wrapper/"
 Source = "https://github.com/StarryDevelopment/luduvo-api-wrapper"
 Issues = "https://github.com/StarryDevelopment/luduvo-api-wrapper/issues"
