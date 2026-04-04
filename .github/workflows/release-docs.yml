@@ -1,5 +1,8 @@
 name: MkDocs Deploy (release)
 
+permissions:
+  contents: write
+  
 on:
   release:
     types: [published]
