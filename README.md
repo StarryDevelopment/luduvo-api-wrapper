@@ -2,6 +2,10 @@
 
 [Documentation](https://starrydevelopment.github.io/luduvo.py) | [Support Discord Server](https://discord.com/invite/8jsEtksQvD)
 
+> **Disclaimer**  
+> This wrapper is community-maintained and is not officially affiliated with Luduvo or its developers.  
+> It is an independent project created by members of the community to simplify interaction with the Luduvo API.
+
 ## Overview
 A modern, asynchronous Python wrapper for the Luduvo API.
 
@@ -17,6 +21,3 @@ Install the latest stable version with:
 ```bash
 python3 -m pip install luduvo
 ```
-
-
-more later on...
