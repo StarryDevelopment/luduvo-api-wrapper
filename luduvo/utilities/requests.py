@@ -34,7 +34,7 @@ class CleanAsyncClient(AsyncClient):
 
 class Requests:
     """
-    A special request object that implements special functionality required to connect to some Roblox endpoints.
+    A special request object that implements special functionality required to connect to some Luduvo endpoints.
 
     Attributes:
         session: Base session object to use when sending requests.
