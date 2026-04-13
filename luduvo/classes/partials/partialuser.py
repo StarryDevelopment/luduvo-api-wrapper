@@ -4,7 +4,6 @@ This file contains partial objects related to Luduvo users.
 
 """
 
-
 import datetime
 from ..bases.baseuser import BaseUser
 from typing import TYPE_CHECKING
