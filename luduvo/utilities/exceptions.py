@@ -195,3 +195,11 @@ class UserNotFound(ItemNotFound):
     """
 
     pass
+
+
+class PlaceNotFound(ItemNotFound):
+    """
+    Raised for invalid place IDs.
+    """
+
+    pass

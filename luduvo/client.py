@@ -1,8 +1,8 @@
 """Contains the main client class for interacting with the Luduvo API."""
 
 import logging
-from .classes import User, PartialUser
-from .utilities.exceptions import NotFound, UserNotFound
+from .classes import User, PartialUser, Place
+from .utilities.exceptions import NotFound, UserNotFound, PlaceNotFound
 from .utilities.url import URLGenerator
 from .utilities.requests import Requests
 
@@ -94,3 +94,27 @@ class Client:
             logger.debug(f"Expanding user data for username: {username}")
             return await self.get_user(user_info["id"])
         return PartialUser(client=self, data=user_info)
+
+    async def get_place(self, place_id: int) -> Place:
+        """
+        Gets a place with the specified place ID.
+
+        Arguments:
+            place_id: A Luduvo place ID.
+
+        Returns:
+            A place object.
+        """
+        logger.debug(f"Fetching place with ID: {place_id}")
+        try:
+            place_response = await self._requests.get(
+                url=self.url_generator.get_url(f"places/{place_id}", "api")
+            )
+        except NotFound as exception:
+            logger.error(f"Place not found: {place_id}")
+            raise PlaceNotFound(
+                message="Invalid place.", response=exception.response
+            ) from None
+        place_data = place_response.json()
+        logger.debug(f"Successfully retrieved place data for ID: {place_id}")
+        return Place(client=self, data=place_data)
