@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/StarryDevelopment/luduvo.py/refs/heads/master/gh-assets/logo.svg" alt="luduvo" height=128/>
+<img src="https://raw.githubusercontent.com/StarryDevelopment/luduvo.py/refs/heads/master/gh-assets/wordmark.svg" alt="luduvo" height=128/>
 
-[Documentation](https://starrydevelopment.github.io/luduvo.py) | [Support Discord Server](https://discord.com/invite/8jsEtksQvD)
+[Documentation](https://starrydevelopment.github.io/luduvo.py) • [Discord Support Server](https://discord.com/invite/8jsEtksQvD)
 
 > **Disclaimer**  
 > This wrapper is community-maintained and is not officially affiliated with Luduvo or its developers.  
