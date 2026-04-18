@@ -6,12 +6,6 @@ This module contains the BaseUser object, which represents a Luduvo user ID.
 
 from .baseitem import BaseItem
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ...client import Client
-    from ..friends import Friend
-
 
 class BaseUser(BaseItem):
     """
@@ -21,7 +15,7 @@ class BaseUser(BaseItem):
         id: The user ID.
     """
 
-    def __init__(self, client: Client, user_id: int):
+    def __init__(self, client: "Client", user_id: int):
         """
         Arguments:
             client: The Client this object belongs to.

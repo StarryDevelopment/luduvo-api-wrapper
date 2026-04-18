@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from enum import Enum
 
 if TYPE_CHECKING:
-    from ..client import Client
+    pass
 
 
 class PlaceAccess(Enum):
@@ -41,7 +41,7 @@ class Place(BasePlace):
         tags: A list of tags associated with the place.
     """
 
-    def __init__(self, client: Client, data: dict):
+    def __init__(self, client: "Client", data: dict):
         """
         Arguments:
             client: The Client this object belongs to.

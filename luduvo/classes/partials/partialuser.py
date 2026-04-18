@@ -9,7 +9,7 @@ from ..bases.baseuser import BaseUser
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ...client import Client
+    pass
 
 
 class PartialUser(BaseUser):
