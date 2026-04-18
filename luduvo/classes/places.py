@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 from enum import Enum
 
 if TYPE_CHECKING:
-    from ...client import Client
+    from ..client import Client
 
 
 class PlaceAccess(Enum):
