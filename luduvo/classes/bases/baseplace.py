@@ -9,7 +9,7 @@ from .baseitem import BaseItem
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    pass
+    from ...client import Client
 
 
 class BasePlace(BaseItem):
