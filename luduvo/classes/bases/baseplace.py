@@ -3,6 +3,8 @@ This module contains the BasePlace object, which represents a Luduvo place ID.
 
 """
 
+from __future__ import annotations
+
 from .baseitem import BaseItem
 from typing import TYPE_CHECKING
 

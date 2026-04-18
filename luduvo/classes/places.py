@@ -2,6 +2,8 @@
 This module contains classes intended to parse and deal with data from Luduvo place information endpoints.
 """
 
+from __future__ import annotations
+
 from .bases.baseplace import BasePlace
 import datetime
 from typing import TYPE_CHECKING
