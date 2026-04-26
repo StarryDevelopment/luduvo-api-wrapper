@@ -63,7 +63,6 @@ class Client:
                 url=self.url_generator.get_url(f"users/{user_id}/profile", "api")
             )
         except NotFound as exception:
-            logger.error(f"User not found: {user_id}")
             raise UserNotFound(
                 message="Invalid user.", response=exception.response
             ) from None
@@ -96,7 +95,6 @@ class Client:
             ) from None
         user_data = user_response.json()
         if len(user_data) == 0:
-            logger.error(f"User not found: {username}")
             raise UserNotFound(message="Invalid user.")
         user_info = user_data[0]
         if expand:
@@ -112,7 +110,6 @@ class Client:
             A user object.
         """
         if not self.authenticated:
-            logger.error("Attempted to get authenticated user without authentication")
             raise Exception("Client is not authenticated.")
         logger.debug("Fetching authenticated user profile")
         try:
@@ -146,7 +143,6 @@ class Client:
                 url=self.url_generator.get_url(f"places/{place_id}", "api")
             )
         except NotFound as exception:
-            logger.error(f"Place not found: {place_id}")
             raise PlaceNotFound(
                 message="Invalid place.", response=exception.response
             ) from None
