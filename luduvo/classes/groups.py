@@ -45,7 +45,7 @@ class Group(BaseGroup):
         self.owner_username: str = data["owner_username"]
         self.access: GroupAccess = GroupAccess(data["access"])
         self.member_count: int = data["member_count"]
-        self.icon_url: int = data["icon_url"]
+        self.icon_url: str = data["icon_url"]
         self.created_at: datetime.datetime = datetime.datetime.fromtimestamp(
             data["created_at"]
         )
