@@ -566,6 +566,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../classes/bases/basegroup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basegroup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../classes/bases/baseitem/" class="md-nav__link">
         
   
@@ -685,6 +713,62 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../classes/groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -697,7 +781,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -719,14 +803,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_1_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -955,6 +1039,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#luduvo.client.Client.get_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#luduvo.client.Client.get_place" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1149,6 +1244,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../utilities/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../utilities/url/" class="md-nav__link">
         
   
@@ -1259,6 +1382,17 @@
     <span class="md-ellipsis">
       
         get_authenticated_user
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luduvo.client.Client.get_group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_group
       
     </span>
   </a>
@@ -1565,7 +1699,32 @@
 <span class="normal">160</span>
 <span class="normal">161</span>
 <span class="normal">162</span>
-<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Client</span><span class="p">:</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Client</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a Luduvo Client.</span>
 
 <span class="sd">    Attributes:</span>
@@ -1610,7 +1769,7 @@
 <span class="sd">            user_id: A Luduvo user ID.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            A user object.</span>
+<span class="sd">            A User object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching user with ID: </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1662,7 +1821,7 @@
 <span class="sd">        Gets the authenticated user.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            A user object.</span>
+<span class="sd">            A User object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Client is not authenticated.&quot;</span><span class="p">)</span>
@@ -1690,7 +1849,7 @@
 <span class="sd">            place_id: A Luduvo place ID.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            A place object.</span>
+<span class="sd">            A Place object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching place with ID: </span><span class="si">{</span><span class="n">place_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1704,6 +1863,31 @@
         <span class="n">place_data</span> <span class="o">=</span> <span class="n">place_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully retrieved place data for ID: </span><span class="si">{</span><span class="n">place_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Place</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">place_data</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a Luduvo group with the specified ID.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            group_id: A Luduvo group ID.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A Group object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Fetching group with ID: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">group_id</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">group_response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url_generator</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;groups/</span><span class="si">{</span><span class="n">group_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotFound</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GroupNotFound</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Invalid group.&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">response</span>
+            <span class="p">)</span>
+        <span class="n">group_data</span> <span class="o">=</span> <span class="n">group_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully retrieved group data for ID: </span><span class="si">{</span><span class="n">group_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Group</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_data</span><span class="p">)</span>
+
+
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1877,11 +2061,11 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>luduvo/client.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Closes the client session.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1925,7 +2109,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A user object.</p>
+                <p>A User object.</p>
               </div>
             </td>
           </tr>
@@ -1963,7 +2147,7 @@
 <span class="sd">    Gets the authenticated user.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A user object.</span>
+<span class="sd">        A User object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Client is not authenticated.&quot;</span><span class="p">)</span>
@@ -1982,6 +2166,129 @@
         <span class="sa">f</span><span class="s2">&quot;Successfully retrieved authenticated user data (ID: </span><span class="si">{</span><span class="n">user_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">user_data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="luduvo.client.Client.get_group" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#luduvo.client.Client.get_group" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gets a Luduvo group with the specified ID.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>group_id</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A Luduvo group ID.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="Group (luduvo.classes.Group)" href="../classes/groups/#luduvo.classes.groups.Group">Group</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A Group object</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>luduvo/client.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets a Luduvo group with the specified ID.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        group_id: A Luduvo group ID.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A Group object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Fetching group with ID: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">group_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">group_response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url_generator</span><span class="o">.</span><span class="n">get_url</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;groups/</span><span class="si">{</span><span class="n">group_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">NotFound</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">GroupNotFound</span><span class="p">(</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Invalid group.&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">response</span>
+        <span class="p">)</span>
+    <span class="n">group_data</span> <span class="o">=</span> <span class="n">group_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully retrieved group data for ID: </span><span class="si">{</span><span class="n">group_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Group</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2052,7 +2359,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A place object.</p>
+                <p>A Place object.</p>
               </div>
             </td>
           </tr>
@@ -2091,7 +2398,7 @@
 <span class="sd">        place_id: A Luduvo place ID.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A place object.</span>
+<span class="sd">        A Place object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching place with ID: </span><span class="si">{</span><span class="n">place_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -2175,7 +2482,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A user object.</p>
+                <p>A User object.</p>
               </div>
             </td>
           </tr>
@@ -2214,7 +2521,7 @@
 <span class="sd">        user_id: A Luduvo user ID.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A user object.</span>
+<span class="sd">        A User object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching user with ID: </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
