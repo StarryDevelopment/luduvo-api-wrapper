@@ -1,8 +1,8 @@
 """Contains the main client class for interacting with the Luduvo API."""
 
 import logging
-from .classes import User, PartialUser, Place
-from .utilities.exceptions import NotFound, UserNotFound, PlaceNotFound
+from .classes import User, PartialUser, Place, Group
+from .utilities.exceptions import NotFound, UserNotFound, PlaceNotFound, GroupNotFound
 from .utilities.url import URLGenerator
 from .utilities.requests import Requests
 
@@ -55,7 +55,7 @@ class Client:
             user_id: A Luduvo user ID.
 
         Returns:
-            A user object.
+            A User object.
         """
         logger.debug(f"Fetching user with ID: {user_id}")
         try:
@@ -107,7 +107,7 @@ class Client:
         Gets the authenticated user.
 
         Returns:
-            A user object.
+            A User object.
         """
         if not self.authenticated:
             raise Exception("Client is not authenticated.")
@@ -135,7 +135,7 @@ class Client:
             place_id: A Luduvo place ID.
 
         Returns:
-            A place object.
+            A Place object.
         """
         logger.debug(f"Fetching place with ID: {place_id}")
         try:
@@ -149,6 +149,31 @@ class Client:
         place_data = place_response.json()
         logger.debug(f"Successfully retrieved place data for ID: {place_id}")
         return Place(client=self, data=place_data)
+
+    async def get_group(self, group_id: int) -> Group:
+        """
+        Gets a Luduvo group with the specified ID.
+
+        Arguments:
+            group_id: A Luduvo group ID.
+
+        Returns:
+            A Group object
+        """
+        logger.debug("Fetching group with ID: %s", group_id)
+        try:
+            group_response = await self.requests.get(
+                url=self.url_generator.get_url(f"groups/{group_id}")
+            )
+        except NotFound as exception:
+            raise GroupNotFound(
+                message="Invalid group.", response=exception.response
+            )
+        group_data = group_response.json()
+        logger.debug(f"Successfully retrieved group data for ID: {group_id}")
+        return Group(client=self, data=group_data)
+
+
 
     async def close(self):
         """

@@ -1,6 +1,6 @@
 """
 
-Contains exceptions used by luduvo_api.
+Contains exceptions used by luduvo.py.
 
 """
 
@@ -200,6 +200,13 @@ class UserNotFound(ItemNotFound):
 class PlaceNotFound(ItemNotFound):
     """
     Raised for invalid place IDs.
+    """
+
+    pass
+
+class GroupNotFound(ItemNotFound):
+    """
+    Raised for invalid group IDs.
     """
 
     pass

@@ -7,17 +7,15 @@ from __future__ import annotations
 from .bases.baseplace import BasePlace
 import datetime
 from typing import TYPE_CHECKING
-from enum import Enum
+
+from ..utilities.types import PlaceAccess
+
 
 if TYPE_CHECKING:
     from ..client import Client
 
 
-class PlaceAccess(Enum):
-    """Represents the access type of a Luduvo place."""
 
-    PUBLIC = "public"
-    PRIVATE = "private"
 
 
 class Place(BasePlace):
