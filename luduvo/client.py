@@ -11,19 +11,31 @@ logger = logging.getLogger("luduvo")
 
 
 class Client:
-    """Represents a Luduvo Client.
+    """Represents a Luduvo API client.
+
+    This class is the main entry point for interacting with the Luduvo API.
+    It manages authentication, HTTP requests, and access to high-level
+    resources such as users, places, and groups.
 
     Attributes:
-        requests: The requests object, which is used to send requests to Luduvo endpoints.
-        url_generator: The URL generator object, which is used to generate URLs to send requests to endpoints.
+        requests: The HTTP request handler used to communicate with API endpoints.
+        url_generator: Utility used to construct API URLs for requests.
+        authenticated: Whether the client is currently authenticated.
     """
 
     def __init__(self, username=None, password=None, base_url="luduvo.com"):
         """
+        Initialize a Luduvo Client instance.
+
         Args:
-            username (str, optional): The username for authentication.
-            password (str, optional): The password for authentication.
-            base_url (str, optional): The base URL for the Luduvo API.
+            username (str, optional): Username used for authentication.
+            password (str, optional): Password used for authentication.
+            base_url (str, optional): Base URL for the Luduvo API.
+
+        Example:
+            ```python
+            client = Client(username="john", password="secret")
+            ```
         """
         logger.debug("Initializing Client(base_url=%s)", base_url)
 
@@ -49,13 +61,22 @@ class Client:
 
     async def get_user(self, user_id: int) -> User:
         """
-        Gets a user with the specified user ID.
+        Retrieve a user by their unique user ID.
 
-        Arguments:
-            user_id: A Luduvo user ID.
+        Args:
+            user_id (int): The ID of the user to retrieve.
 
         Returns:
-            A User object.
+            User: A fully populated User object.
+
+        Raises:
+            UserNotFound: If the user does not exist.
+
+        Example:
+            ```python
+            user = await client.get_user(123)
+            print(user.username)
+            ```
         """
         logger.debug(f"Fetching user with ID: {user_id}")
         try:
@@ -66,6 +87,7 @@ class Client:
             raise UserNotFound(
                 message="Invalid user.", response=exception.response
             ) from None
+
         user_data = user_response.json()
         logger.debug(f"Successfully retrieved user data for ID: {user_id}")
         return User(client=self, data=user_data)
@@ -74,14 +96,25 @@ class Client:
         self, username: str, expand: bool = True
     ) -> User | PartialUser:
         """
-        Gets a user with the specified username.
+        Retrieve a user by their username.
 
-        Arguments:
-            username: A Luduvo username.
-            expand: Whether to return a User (2 requests) rather than a PartialUser (1 request)
+        Args:
+            username (str): The username to search for.
+            expand (bool, optional): If True, returns a full User object by
+                performing an additional request. If False, returns a PartialUser.
+                Defaults to True.
 
         Returns:
-            A User or PartialUser depending on the expand argument.
+            User | PartialUser: The requested user representation.
+
+        Raises:
+            UserNotFound: If no user matches the given username.
+
+        Example:
+            ```python
+            user = await client.get_user_by_username("john")
+            print(user.id)
+            ```
         """
         logger.debug(f"Fetching user with username: {username}")
         try:
@@ -93,24 +126,38 @@ class Client:
             raise UserNotFound(
                 message="Invalid user.", response=exception.response
             ) from None
+
         user_data = user_response.json()
         if len(user_data) == 0:
             raise UserNotFound(message="Invalid user.")
+
         user_info = user_data[0]
         if expand:
             logger.debug(f"Expanding user data for username: {username}")
             return await self.get_user(user_info["id"])
+
         return PartialUser(client=self, data=user_info)
 
     async def get_authenticated_user(self) -> User:
         """
-        Gets the authenticated user.
+        Retrieve the currently authenticated user.
 
         Returns:
-            A User object.
+            User: The authenticated user's full profile.
+
+        Raises:
+            Exception: If the client is not authenticated.
+            UserNotFound: If the authenticated user cannot be retrieved.
+
+        Example:
+            ```python
+            me = await client.get_authenticated_user()
+            print(me.username)
+            ```
         """
         if not self.authenticated:
             raise Exception("Client is not authenticated.")
+
         logger.debug("Fetching authenticated user profile")
         try:
             user_response = await self._requests.get(
@@ -121,6 +168,7 @@ class Client:
             raise UserNotFound(
                 message="Authenticated user not found.", response=exception.response
             ) from None
+
         user_data = user_response.json()
         logger.debug(
             f"Successfully retrieved authenticated user data (ID: {user_data.get('user_id')})"
@@ -129,13 +177,22 @@ class Client:
 
     async def get_place(self, place_id: int) -> Place:
         """
-        Gets a place with the specified place ID.
+        Retrieve a place by its unique place ID.
 
-        Arguments:
-            place_id: A Luduvo place ID.
+        Args:
+            place_id (int): The ID of the place to retrieve.
 
         Returns:
-            A Place object.
+            Place: A Place object representing the requested place.
+
+        Raises:
+            PlaceNotFound: If the place does not exist.
+
+        Example:
+            ```python
+            place = await client.get_place(456)
+            print(place.title)
+            ```
         """
         logger.debug(f"Fetching place with ID: {place_id}")
         try:
@@ -146,19 +203,29 @@ class Client:
             raise PlaceNotFound(
                 message="Invalid place.", response=exception.response
             ) from None
+
         place_data = place_response.json()
         logger.debug(f"Successfully retrieved place data for ID: {place_id}")
         return Place(client=self, data=place_data)
 
     async def get_group(self, group_id: int) -> Group:
         """
-        Gets a Luduvo group with the specified ID.
+        Retrieve a group by its unique group ID.
 
-        Arguments:
-            group_id: A Luduvo group ID.
+        Args:
+            group_id (int): The ID of the group to retrieve.
 
         Returns:
-            A Group object
+            Group: A Group object representing the requested group.
+
+        Raises:
+            GroupNotFound: If the group does not exist.
+
+        Example:
+            ```python
+            group = await client.get_group(789)
+            print(group.name)
+            ```
         """
         logger.debug("Fetching group with ID: %s", group_id)
         try:
@@ -166,14 +233,17 @@ class Client:
                 url=self.url_generator.get_url(f"groups/{group_id}")
             )
         except NotFound as exception:
-            raise GroupNotFound(message="Invalid group.", response=exception.response)
+            raise GroupNotFound(
+                message="Invalid group.", response=exception.response
+            ) from None
+
         group_data = group_response.json()
         logger.debug(f"Successfully retrieved group data for ID: {group_id}")
         return Group(client=self, data=group_data)
 
     async def close(self):
         """
-        Closes the client session.
+        Close the underlying HTTP session used by the client.
         """
         await self._requests.session.aclose()
 
