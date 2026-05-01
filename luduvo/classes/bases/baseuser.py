@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .baseitem import BaseItem
+from ...utilities.iterators import AsyncPaginator
 
 if TYPE_CHECKING:
     from ...client import Client
@@ -33,40 +34,55 @@ class BaseUser(BaseItem):
         self.client = client
         self.id: int = user_id
 
-    async def get_friends(self, limit: int = 50) -> list["Friend"]:
-        from ..friends import Friend
+    def friends(self, page_size: int = 50) -> AsyncPaginator["Friend"]:
+        """Returns an async paginator over the user's friends.
 
-        """Gets the user's friends.
+        This provides a lazy, memory-efficient way to iterate through all
+        friends. Friends are fetched in pages from the API and yielded as
+        `Friend` objects.
 
         Args:
-            limit (int, optional): The maximum number of friends to retrieve. Defaults to 50.
+            page_size (int, optional): Number of friends returned per API request.
+                Controls pagination size. Defaults to 50.
 
         Returns:
-            list[Friend]: A list of the user's friends.
-        """
-        offset = 0
-        friends: list["Friend"] = []
+            AsyncPaginator[Friend]: Async iterator yielding `Friend` objects.
 
-        while True:
+        Example:
+            Iterating asynchronously:
+                ```python
+                async for friend in user.friends():
+                    print(friend.username)
+                ```
+
+            Or collecting all friends at once:
+                ```python
+                friends = await user.friends().flatten()
+                ```
+        """
+
+        from ..friends import Friend
+
+        async def fetch_page(offset: int):
             response = await self.client._requests.get(
                 url=self.client.url_generator.get_url(
                     f"users/{self.id}/friends", "api"
                 ),
-                params={"limit": limit, "offset": offset},
+                params={"limit": page_size, "offset": offset},
             )
 
+            response.raise_for_status()
             data = response.json()
 
-            page_friends = [Friend(client=self.client, data=f) for f in data["friends"]]
+            return {
+                "items": [
+                    Friend(client=self.client, data=f)
+                    for f in data.get("friends", [])
+                ],
+                "total": data.get("total", 0),
+            }
 
-            friends.extend(page_friends)
-
-            offset += limit
-
-            if offset >= data["total"] or not page_friends:
-                break
-
-        return friends
+        return AsyncPaginator(fetch_page)
 
     async def get_headshot_url(self) -> str | None:
         """Gets the user's headshot url.
@@ -74,9 +90,12 @@ class BaseUser(BaseItem):
         Returns:
             str: Headshot URL
         """
-        response = await self.client.requests.get(
-            url=self.client.url_generator.get_url(f"users/{self.id}/avatar/headshot"),
-            follow_redirects=False,
-        )
-        url = response.headers.get("Location", None)
-        return url
+        try:
+            response = await self.client.requests.get(
+                url=self.client.url_generator.get_url(f"users/{self.id}/avatar/headshot"),
+                follow_redirects=False,
+            )
+            url = response.headers.get("Location", None)
+            return url
+        except Exception:
+            return None
